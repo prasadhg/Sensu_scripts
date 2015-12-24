@@ -48,6 +48,5 @@ verify_service rabbitmq-server
 verify_service redis-server
 verify_service sensu-server
 verify_service sensu-api
-#verify_service uchiwa
 verify_service sensu-client
 verify_service sensu-dashboard

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-printf "/n Test script \n "
+printf "\n Test script \n "

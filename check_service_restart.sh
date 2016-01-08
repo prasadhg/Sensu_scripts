@@ -6,22 +6,25 @@ send_email()
 elist="/var/mail/email_list.txt"
 if [ -e "$elist" ]
         then
-                printf "\n Email list file avaialable "
+                printf "\n Email list file avaialable \n "
         else
                 printf "\n Email list file fine $elist is not available, please create the file and add Email ID's  \n"
                 return
         fi
 
-while IFS=$'\t' read -r  line
+while IFS="," read -ra  line
 do
-  if [[ "$line" == *"@aricent.com" ]]
+ for (( i=0; i<${#line[@]}; ++i )); do
+  if [[ "${line[$i]}" == *"@aricent.com" ]]
   then
-        printf  "\n Mail sent to $line saying $1 \n\n"
+        printf  "\n Mail sent to ${line[$i]} saying $1 \n\n"
         #mail -s "random msg !" -t "$line" < /dev/null 2> /dev/null
   else
-        printf  " $line is not an valid mail ID \n"
+        printf  " ${line[$i]} is not an valid mail ID, Please enter valid mail ID in file /var/mail/email_list.txt \n"
   fi
+ done
 done < "/var/mail/email_list.txt"
+
 }
 
 restart_service()
@@ -35,6 +38,7 @@ restart_service()
         else
                 printf "\n !!!Could not start the service!!! \n" >&2
 		send_email "Unable to restart the service $1 "
+		return
         fi
         sleep 3
         check_service $1
@@ -75,8 +79,9 @@ printf  "\n ### Script to check Sensu related services running or not! ###  \n "
 verify_service rabbitmq-server
 verify_service redis-server
 verify_service sensu-server
-verify_service sensu-api
+#verify_service sensu-api
 verify_service sensu-client
 verify_service sensu-dashboard
 verify_service elasticsearch
 verify_service apache2
+verify_service sensu-api

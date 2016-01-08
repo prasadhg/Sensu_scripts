@@ -9,6 +9,7 @@ restart_service()
                 echo "Successfully restarted the service"
         else
                 echo "Could not start the service" >&2
+		return
         fi
         sleep 3
         check_service $1

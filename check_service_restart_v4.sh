@@ -39,6 +39,7 @@ restart_service()
         else
                 printf "\n !!!Could not start the service!!! \n" >&2
 		send_email "Unable to restart the service $1 "
+		return
         fi
         sleep 3
         check_service $1

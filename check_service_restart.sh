@@ -79,9 +79,8 @@ printf  "\n ### Script to check Sensu related services running or not! ###  \n "
 verify_service rabbitmq-server
 verify_service redis-server
 verify_service sensu-server
-#verify_service sensu-api
+verify_service sensu-api
 verify_service sensu-client
 verify_service sensu-dashboard
 verify_service elasticsearch
 verify_service apache2
-verify_service sensu-api

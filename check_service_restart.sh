@@ -8,7 +8,7 @@ if [ -e "$elist" ]
         then
                 printf "\n Email list file avaialable \n "
         else
-                printf "\n Email list file fine $elist is not available, please create the file and add Email ID's  \n"
+                printf "\n Email list file $elist is not available, please create the file and add Email ID's  \n"
                 return
         fi
 
